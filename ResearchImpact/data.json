@@ -1,0 +1,10 @@
+{
+    "publicaciones": {
+        "inicio": 10,
+        "fin": 20
+    },
+    "citaciones": {
+        "inicio": 10,
+        "fin": 20
+    }
+}

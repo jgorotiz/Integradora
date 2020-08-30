@@ -1,0 +1,4 @@
+Este es un mensaje automatizado de Ranking ESPOL
+
+Se ha terminado el proceso de ${NOMBRE_PROCESO}.
+Buenas madrugadas

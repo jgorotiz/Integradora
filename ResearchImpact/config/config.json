@@ -1,0 +1,50 @@
+{
+    "filenames": {
+        "ASJC": "../PY's/productividadASJC.xlsx",
+        "QS": "../PY's/productividadQS.xlsx"
+    },
+    "rangos": {
+        "publicados": {
+            "desde": 2014,
+            "hasta": 2018
+        },
+        "citaciones": {
+            "desde": 2013,
+            "hasta": 2018
+        }
+    },
+    "terminologia": {
+        "publicados": "productividad",
+        "citaciones": "calidad"
+    },
+    "finalfiles": {
+        "ASJC": {
+            "publicados": "../PY's/publicados_Scopus ASJC.xlsx",
+            "citaciones": "../PY's/citaciones_Scopus ASJC.xlsx"
+        },
+        "QS": {
+            "publicados": "../PY's/publicados_Scopus QS.xlsx",
+            "citaciones": "../PY's/citaciones_Scopus QS.xlsx"
+        }
+    },
+    "pesos": {
+        "publicados": {
+            "termino": "Wp",
+            "porcentaje": 0.33
+        },
+        "citaciones": {
+            "termino": "Wc",
+            "porcentaje": 0.67
+        }
+    },
+    "contactos": {
+        "admin": {
+            "nombre": "Decanato de Investigaci\u00f3n",
+            "mail": "decinv@espol.edu.ec"
+        },
+        "receptor": {
+            "nombre": "Alfonso Pulido",
+            "mail": "ampulido@espol.edu.ec"
+        }
+    }
+}
