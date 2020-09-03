@@ -9,5 +9,7 @@ urlpatterns = [
     url(r'^instalarDependencias$', views.instalarDependencias, name='instalarDependencias'),
     url(r'^registerAuthors$', views.registerAuthors, name='registerAuthors'),
     url(r'^prueba$', views.executeScrapper, name='executeScrapper'),
+    url(r'^datasetInvestigadores$', views.datasetInvestigadores, name='datasetInvestigadores'),
+    url(r'^$', views.mostrar_indice, name='mostrar_indice'),
     
 ]

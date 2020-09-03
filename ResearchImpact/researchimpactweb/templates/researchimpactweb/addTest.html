@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Research-Impact - Ingreso de Muestra{% endblock %}
+
+{% block menu %}
+  <li ><a class="labels h4 " href="{% url 'home' %}">Inicio</a> </li>
+  <li ><a class="labels h4 " href="#">Bienvenido, Recolector 001</a> </li>
+{% endblock %}
+
+
+
+{% block body %}
+
+
+<div class="right-col col-md-12">
+			<div class="reserver"></div>
+				<h2 class="center featurette-heading">Registro de<span class="center text-muted"> Pacientes y Muestras</span></h2>
+
+			<hr class="featurette-divider"> 
+				<div class="form-group">
+					<input class = "entrada" type="text" name="nombre" id="cedula" autocomplete="off" placeholder = "cédula"/>
+					<input class = "entrada" type="text" name="apellido" id="email" autocomplete="off" placeholder="email"/>
+					
+				</div>
+				<div class="form-group">
+					<input id="buscar_cedula" type="submit" name="submit" value="Buscar" class="btn btn-default sender">
+					<input id="agregar_user" type="submit" name="submit" value="Registrar" class="btn btn-default sender">
+				</div>
+
+				<div class="form-group">
+					<input class = "entrada" type="text" name="cedula" id="cedulaAdicional" autocomplete="off" placeholder = "cédula"/>
+					<input class = "entrada" type="text" name="muestra" id="muestra_ID" autocomplete="off" placeholder="código"/>
+					<input class = "entrada" type="text" name="referencia" id="referencia" autocomplete="off" placeholder="referencia"/>
+					
+				</div>
+				<div class="form-group">
+					<input id ="add_test" type="submit" name="submit" value="Agregar" class="btn btn-default sender">
+				</div>
+
+				<div class="form-group">
+							<div class="row">
+						<div class="col-md-9">
+							<table id="tests" class="table">
+								<thead>
+									<tr>
+										<th>Cédula</th>
+										<th>Código</th>
+										<th>Referencia</th>
+									</tr>
+								</thead>
+								<tbody id="tests-table">
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				
+				<!--div class="form-group row">
+					<label  for="tipo_sangre" class="control-label col-sm-4">Tipo de Sangre:</label>
+					<select name="tipo_sangre"  id="tipo_sangre">
+						<option value="A+">A+</option>
+						<option value="A-">A-</option>
+						<option value="B+">B+</option>
+						<option value="B-">B-</option>
+						<option value="AB+">AB+</option>
+						<option value="AB-">AB-</option>
+						<option value="O+">O+</option>
+						<option value="O-">O-</option>
+					</select>
+				</div-->
+				<!--
+				<div>
+					<label  class="labels">Tiene experiencia en primeros auxilios:</label>
+					<label class="radio-inline"><input type="radio" name="optradio">Si</label>
+					<label class="radio-inline"><input type="radio" name="optradio">No</label>
+				</div>-->
+
+		</div>
+		</div>
+	</div>
+</div>
+
+	
+{% endblock %}
+
+{% block scripts %}
+  <script>
+  	var APP_ID = null;
+  	console.log("JS RUNNIGNG..")
+    $("#buscar_cedula").click(function () {
+      var cedula = $("#cedula").val();
+      console.log(cedula);
+
+
+      $.ajax({
+        url: 'ajax/lookup_cedula/',
+        data: {
+          'cedula': cedula
+        },
+        dataType: 'json',
+        success: function (data) {
+          if (data.respuesta) {
+            alert("Usted ya tiene cuenta!");
+            $("#cedula").val(cedula);
+          }else{
+          	alert("Usted no tiene cuenta! Por favor, regístrese.");
+          }
+        }
+      });
+
+    });
+
+    $("#agregar_user").click(function () {
+      var cedula = $("#cedula").val();
+      var email = $("#email").val();
+      console.log(cedula);
+      console.log(email);
+
+      $.ajax({
+        url: 'ajax/add_user/',
+        data: {
+          'cedula':cedula,
+          'correo':email
+        },
+        dataType: 'json',
+        success: function (data) {
+          if (data.respuesta) {
+            alert("Usted ha sido registrado.\nSu PIN de acceso es:" + data.pin);
+          }else{
+          	alert("Error en registro. Revisar ingreso de correo válido.");
+          }
+        }
+      });
+
+    });
+
+    $("#add_test").click(function () {
+      var cedula = $("#cedulaAdicional").val();
+      var muestra = $("#muestra_ID").val();
+      var referencia = $("#referencia").val();
+      var add_to_html = "<tr>" + "<th>" + cedula + "</th>" + "<th>" + muestra + "</th>" + "<th>" + referencia + "</th> </tr>" 
+
+      $.ajax({
+        url: 'ajax/add_test/',
+        data: {
+          'cedula':cedula,
+          'codigo_muestra':muestra,
+          'referencia':referencia
+        },
+        dataType: 'json',
+        success: function (data) {
+          if (data.respuesta) {
+
+            alert("Muestra ingresada!");
+            $("#tests-table").append(add_to_html);
+            $("#cedulaAdicional").val("");
+			$("#muestra_ID").val("");
+			$("#referencia").val("");
+
+          }else{
+          	alert("Error en registro. Revisar datos de ingreso.");
+          }
+        }
+      });
+
+    });
+  </script>
+{% endblock %}
+
+
+
+

@@ -5,12 +5,12 @@
     },
     "rangos": {
         "publicados": {
-            "desde": 2014,
-            "hasta": 2018
+            "desde": "1",
+            "hasta": "23"
         },
         "citaciones": {
-            "desde": 2013,
-            "hasta": 2018
+            "desde": "3",
+            "hasta": "4"
         }
     },
     "terminologia": {
